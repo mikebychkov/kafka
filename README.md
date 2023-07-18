@@ -14,6 +14,8 @@ just run : kfk topics --list
 - docker-compose up - will start dev environment with one Kafka server v3.3.2 and one Zookeeper server in docker 
 - kfk topics - if you get output with help page than you good to go
 
+- round-robin-producer.sh --topic \<topic name> 
+
 Docker images and Kafka version interoperability: 
 
 https://docs.confluent.io/platform/current/installation/versions-interoperability.html#cp-and-apache-ak-compatibility
