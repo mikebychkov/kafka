@@ -16,6 +16,4 @@ just run : kfk topics --list
 
 Docker images and Kafka version interoperability: 
 
-'''
 https://docs.confluent.io/platform/current/installation/versions-interoperability.html#cp-and-apache-ak-compatibility
-'''
