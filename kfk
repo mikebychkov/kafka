@@ -1,7 +1,46 @@
 #!/bin/bash
 # UPDATE PATH IF NECESSARY AND PUT THIS TO /usr/bin
+if [[ $1 == "--help" || $1 == "help" ]]
+then 
+echo "
+AVAILABLE COMMANDS:
+    acls
+    broker-api-versions
+    cluster
+    configs
+    console-consumer
+    console-producer
+    consumer-groups
+    consumer-perf-test
+    delegation-tokens
+    delete-records
+    dump-log
+    features
+    get-offsets
+    leader-election
+    log-dirs
+    metadata-quorum
+    metadata-shell
+    mirror-maker
+    producer-perf-test
+    reassign-partitions
+    replica-verification
+    run-class
+    server-start
+    server-stop
+    storage
+    streams-application-reset
+    topics
+    transactions
+    verifiable-consumer
+    verifiable-producer
+
+Run command without args to get help on that specific command.
+"
+exit 0
+fi
 srv=localhost:9092
 path=~/kafka_2.13-3.3.1/bin/
-comm="${path}kafka-$1.sh --bootstrap-server $srv $2 $3 $4 $5"
+comm="${path}kafka-$1.sh --bootstrap-server $srv $2 $3 $4 $5 $6 $7 $8 $9 ${10}"
 echo $comm
 $comm
