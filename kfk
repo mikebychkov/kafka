@@ -1,0 +1,7 @@
+#!/bin/bash
+# UPDATE PATH IF NECESSARY AND PUT THIS TO /usr/bin
+srv=localhost:9092
+path=~/kafka_2.13-3.3.1/bin/
+comm="${path}kafka-$1.sh --bootstrap-server $srv $2 $3 $4 $5"
+echo $comm
+$comm
