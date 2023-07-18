@@ -1,0 +1,11 @@
+version: '3'
+
+services:
+  zookeeper:
+    volumes: 
+      - ./zoo/data:/var/lib/zookeeper/data
+      - ./zoo/log:/var/lib/zookeeper/log
+
+  kafka:
+    volumes: 
+      - ./kafka/data:/var/lib/kafka/data

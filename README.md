@@ -20,6 +20,8 @@ just run : kfk topics --list
 - round-robin-producer.sh --topic \<topic-name> 
 - kfk console-consumer --topic \<topic-name>
 
+For messages to be distributed by partitions dependent on key value you shouldn't use round robin producer.
+
 Docker images and Kafka version interoperability: 
 
 https://docs.confluent.io/platform/current/installation/versions-interoperability.html#cp-and-apache-ak-compatibility
