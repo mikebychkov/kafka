@@ -1,6 +1,7 @@
 package com.example.kafka;
 
 import org.apache.kafka.clients.consumer.ConsumerConfig;
+import org.apache.kafka.clients.consumer.CooperativeStickyAssignor;
 import org.apache.kafka.clients.consumer.OffsetResetStrategy;
 import org.apache.kafka.common.serialization.StringDeserializer;
 import org.apache.kafka.common.serialization.StringSerializer;
@@ -30,7 +31,7 @@ public class MyConfig {
 
 //        RE-BALANCE CONSUMERS:
 
-//        configProps.put(ConsumerConfig.PARTITION_ASSIGNMENT_STRATEGY_CONFIG, ); // CooperativeStickyAssignor IS THE BEST CHOICE, BECAUSE SUPPORTS INCREMENTAL RE-BALANCE
+//        configProps.put(ConsumerConfig.PARTITION_ASSIGNMENT_STRATEGY_CONFIG, CooperativeStickyAssignor.class.getName()); // CooperativeStickyAssignor IS THE BEST CHOICE, BECAUSE SUPPORTS INCREMENTAL RE-BALANCE
 
 //        configProps.put(ConsumerConfig.GROUP_INSTANCE_ID_CONFIG, "StaticConsumerForObjectTopic"); // SETTING THIS MAKES CONSUMER STATIC GROUP MEMBER
 //        configProps.put(ConsumerConfig.SESSION_TIMEOUT_MS_CONFIG, 2000);                          // IF STATIC CONSUMER OUT AND BACK INSIDE SESSION TIMEOUT
