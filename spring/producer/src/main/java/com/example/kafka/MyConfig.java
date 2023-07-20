@@ -21,6 +21,9 @@ public class MyConfig {
     public MyConfig(@Value("${spring.kafka.bootstrap-servers}") String bootstrapServers) {
         configProps.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, bootstrapServers);
         configProps.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, StringSerializer.class);
+
+//        DELIVERY SEMANTICS:
+
         configProps.put(ProducerConfig.ACKS_CONFIG, "all");                 // "all" - leader + replica; 1 - leader // 'AT LEAST ONCE'
         configProps.put(ProducerConfig.ENABLE_IDEMPOTENCE_CONFIG, true);    // 'EXACT ONCE' AND 'AT LEAST ONCE'
     }

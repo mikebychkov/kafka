@@ -21,9 +21,21 @@ public class MyConfig {
     public MyConfig(@Value("${spring.kafka.bootstrap-servers}") String bootstrapServers) {
         configProps.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, bootstrapServers);
         configProps.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, StringSerializer.class);
+
+//        DELIVERY SEMANTICS
+
         configProps.put(ConsumerConfig.AUTO_OFFSET_RESET_CONFIG, "latest");                     // DEFAULT VALUE 'latest' ('earliest')
         configProps.put(ConsumerConfig.ENABLE_AUTO_COMMIT_CONFIG, false);                       // DEFAULT VALUE 'false', true - 'AT MOST ONCE', false - 'AT LEAST ONCE'
 //        configProps.put(ConsumerConfig.ISOLATION_LEVEL_CONFIG, IsolationLevel.READ_COMMITTED);   // 'EXACT ONCE'
+
+//        RE-BALANCE CONSUMERS:
+
+//        configProps.put(ConsumerConfig.PARTITION_ASSIGNMENT_STRATEGY_CONFIG, ); // CooperativeStickyAssignor IS THE BEST CHOICE, BECAUSE SUPPORTS INCREMENTAL RE-BALANCE
+
+//        configProps.put(ConsumerConfig.GROUP_INSTANCE_ID_CONFIG, "StaticConsumerForObjectTopic"); // SETTING THIS MAKES CONSUMER STATIC GROUP MEMBER
+//        configProps.put(ConsumerConfig.SESSION_TIMEOUT_MS_CONFIG, 2000);                          // IF STATIC CONSUMER OUT AND BACK INSIDE SESSION TIMEOUT
+//                                                                                                     // WINDOW THEN CONSUMER RE-BALANCE NOT STARTED AND PARTITION
+//                                                                                                     // NOT ASSIGNED TO ANOTHER CONSUMER
     }
     @Bean
     public ConsumerFactory<String, MyMessage> objectConsumerFactory() {
