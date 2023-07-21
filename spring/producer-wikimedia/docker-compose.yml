@@ -1,0 +1,20 @@
+version: "2.1"
+services:
+
+  app:
+    container_name: kafka-producer-wikimedia
+    image: openjdk:17-jdk
+    mem_limit: 1G
+    volumes:
+      - ./target/kafka-producer-wikimedia-1.jar:/app/service.jar
+    working_dir: /app
+    ports:
+      - "8081:8081"
+    command: java -jar /app/service.jar
+    networks:
+      - kafka-wiki-network
+
+networks:
+  kafka-wiki-network:
+    name: "kafka-wiki-network"
+    external: true
