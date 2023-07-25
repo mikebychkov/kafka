@@ -9,6 +9,8 @@ import org.springframework.kafka.support.SendResult;
 import org.springframework.stereotype.Service;
 import org.springframework.util.concurrent.ListenableFuture;
 
+import java.util.Optional;
+
 @Service
 public class ProducerServiceImpl implements ProducerService {
 
@@ -19,8 +21,12 @@ public class ProducerServiceImpl implements ProducerService {
     @Override
     public ListenableFuture<SendResult<String, WikiChange>> send(WikiChange change) {
 
+        String id = Optional.ofNullable(change.getId())
+                .map(l -> Long.toString(l))
+                .orElse("null");
+
         ListenableFuture<SendResult<String, WikiChange>> result =
-                kafkaTemplateObject.send(KafkaTopicConfiguration.WIKI_TOPIC, change.getType(), change);
+                kafkaTemplateObject.send(KafkaTopicConfiguration.WIKI_TOPIC, id, change);
 
         return result;
     }
