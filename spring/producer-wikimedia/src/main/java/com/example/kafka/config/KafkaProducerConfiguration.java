@@ -44,7 +44,7 @@ public class KafkaProducerConfiguration {
 
 //        BATCHING:
         configProps.put(ProducerConfig.BATCH_SIZE_CONFIG, 32*1024); // DEFAULT 16 (KB) WITH BIGGER BATCH SIZE EFFICIENCY OF COMPRESSION IS GROWING
-        configProps.put(ProducerConfig.LINGER_MS_CONFIG, 20); // (MS) HOW MANY TIME TO WAIT UNTIL SEND BATCH
+        configProps.put(ProducerConfig.LINGER_MS_CONFIG, 100); // (MS) HOW MANY TIME TO WAIT UNTIL SEND BATCH
     }
 
     @Bean

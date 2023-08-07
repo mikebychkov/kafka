@@ -1,6 +1,6 @@
 package com.example.kafka.config;
 
-import com.example.kafka.dto.MyMessage;
+import com.example.kafka.dto.WikiChange;
 import org.apache.kafka.clients.consumer.ConsumerConfig;
 import org.apache.kafka.common.serialization.StringDeserializer;
 import org.apache.kafka.common.serialization.StringSerializer;
@@ -38,18 +38,19 @@ public class KafkaConsumerConfiguration {
 //                                                                                                     // NOT ASSIGNED TO ANOTHER CONSUMER
     }
     @Bean
-    public ConsumerFactory<String, MyMessage> objectConsumerFactory() {
+    public ConsumerFactory<String, WikiChange> objectConsumerFactory() {
         configProps.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, JsonSerializer.class);
         return new DefaultKafkaConsumerFactory<>(
                 configProps,
                 new StringDeserializer(),
-                new JsonDeserializer<>(MyMessage.class));
+                new JsonDeserializer<>(WikiChange.class));
     }
     @Bean
-    public ConcurrentKafkaListenerContainerFactory<String, MyMessage> objectKafkaListenerContainerFactory() {
+    public ConcurrentKafkaListenerContainerFactory<String, WikiChange> objectKafkaListenerContainerFactory() {
 
-        ConcurrentKafkaListenerContainerFactory<String, MyMessage> factory = new ConcurrentKafkaListenerContainerFactory<>();
+        ConcurrentKafkaListenerContainerFactory<String, WikiChange> factory = new ConcurrentKafkaListenerContainerFactory<>();
         factory.setConsumerFactory(objectConsumerFactory());
+        factory.setBatchListener(true);
 //        factory.setConcurrency(3); // IF THERE IS MULTIPLE CONSUMERS THAN ContainerFactory.concurrency PROBABLY SHOULD BE 1 (default), ELSE INCREASING THIS NUMBER MAKE SENSE
         return factory;              // CAN BE SET THROUGH ANNOTATION
     }
